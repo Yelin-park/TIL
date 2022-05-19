@@ -10,4 +10,5 @@
 ### WEB
 <ul>
   <li><a href="https://github.com/Yelin-park/TIL/blob/main/HTML/HTML.md">HTML</a></li>
+  <li><a href="https://github.com/Yelin-park/TIL/blob/main/css/css.md">CSS</a></li>
 </ul>
