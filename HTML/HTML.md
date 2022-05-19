@@ -154,6 +154,8 @@ ex12.html 입력한 last name = <%= lname %><br>
       - 시간을 선택하는 기능
 </ul>
 
+### 예제)
+
   <h4>[ 코드 ]</h4>
 
 ```html
@@ -241,4 +243,148 @@ ex12.html 입력한 last name = <%= lname %><br>
 <h4>[결과]</h4>
 
  ![alt](https://github.com/Yelin-park/TIL/blob/main/HTML/img/days06_ex01.JPG)
+ 
+ <h4>[코드]</h4>
+
+```html
+<body onload="init();">
+  <!-- 랜더링을 하면 초기화하는 함수를 호출하겠다.. -->
+
+  <!-- autocomplete="on" : 사용자가 이전에 입력한 값을 기반으로 자동 완성할 수 있게 하는 속성 -->
+  <!-- 대소문자, 특수문자, 숫자 입력유효성 검사를 js -->
+  <form action="ex02_ok.jsp" method="get" autocomplete="on">
+    비밀번호 :
+    <input
+      type="password"
+      name="passwd"
+      maxlength="8"
+      style="text-align: center;"
+    />
+    <br />
+
+    <!-- 브라우저 지원에 따라 색상 선택에 차이가 있다.(모양 등) -->
+    <input type="color" id="favcolor" name="favcolor" />
+    <br />
+
+    <!-- 날짜 선택 가능 -->
+    <input type="date" id="birth" />
+    <button type="button" onclick="btn_date();">선택한 날짜 확인</button>
+    <script>
+      function btn_date() {
+        // window 객체는 모든 객체의 최상위 부모이고 생략가능하다.
+        // 모든 input 태그들의 입력값 또는 선택값은 value라는 속성 값으로 설정하기도 하고, 가져오기도한다.
+        /* window.alert("경고창"); */
+        var birhtday = document.getElementById("birth").value;
+        alert(birhtday);
+      }
+    </script>
+    <br />
+
+    설문(투표) 기간 :
+    <!-- 시작 ~ 종료 / min, max로 제한할 수 있다. -->
+    <input type="date" min="2022-05-19" max="2022-05-25" />
+    <br />
+    <!-- 날짜 + 시간 -->
+    <input type="datetime-local" />
+    <!-- 우리 지역 -->
+    <br />
+    <input type="datetime" />
+    <br />
+
+    <!-- 서브밋을 하면 자동으로 이메일 유효성 검사를 한다. -->
+    email : <input type="email" />
+    <br />
+
+    <!-- 년도와 월만 선택할 수 있는 input 태그 -->
+    <input type="month" />
+    <br />
+
+    <!-- 입력 제한 속성 : [checked], disabled, [min, max, maxlength], pattern, readonly, required, size, step, [value] -->
+    <input type="text" value="홍길동" readonly="readonly" />
+    <!-- 읽기 전용(값을 바꿀 수 없고 읽기만 가능) -->
+    <br />
+    <input type="text" value="홍길동" size="50" />
+    <!-- size는 width(너비)가 잡힘, 문자 50개를 담을 수 있는 너비를 만들겠다. -->
+    <br />
+    <input type="text" value="홍길동" disabled="disabled" />
+    <!-- 사용안하겠다(색깔이 바뀜) -->
+    <br />
+    <!-- required="required" 필수 입력사항 속성 -->
+
+    휴대폰 번호 :
+    <!-- 000-0000-0000 -->
+    <input type="tel" pattern="[0-9]{3}-\d{4}-d{4}" /><br />
+    <!-- 말그대로 패턴을 지정 -->
+
+    deptno :
+    <!-- 10/20/30/40..90까지 10씩 증가 -->
+    <input type="number" min="10" max="90" step="10" value="30" /><br />
+    <!-- 숫자만 입력 가능 -->
+
+    볼륨조절 :
+    <!-- 입력범위 : 0~100 -->
+    <!-- oninput 이벤트는 슬라이더 변경(움직임)할 때 마다 일어나는 이벤트 -->
+    <input
+      type="range"
+      id="volumn"
+      name="volumn"
+      min="0"
+      max="100"
+      value="10"
+      oninput="volumn_change();"
+    />
+    <!-- onchange="volumn_change();" -->
+
+    <div id="demo"></div>
+    <!-- div 태그는 value 속성이 없음 -->
+    <br />
+
+    <!-- 검색 필드 -->
+    <input type="search" />
+    <br />
+
+    <!-- URL인지 유효성 검사를 함 -->
+    <input type="url" />
+    <br />
+
+    <!-- 년도와 주를 선택 -->
+    <input type="week" />
+    <br />
+
+    <!-- 비밀번호 pattern -->
+    <input type="text" pattern="\d{5}|\d{3}-[0-9]{3}" />
+    <br />
+
+    <!-- 시간 -->
+    <input type="time" />
+    <br />
+
+    <br />
+    <input type="submit" />
+
+    <!-- 이미지를 클릭하니 submit이 되어짐(submit이 예쁘지 않아서 image type 사용) -->
+    <!-- <input type="image" src="../images/SiSt.ico"> 
+  <img src="../images/SiSt.ico" alt="" /> -->
+  </form>
+
+  <script>
+    function init() {
+      // alert("로딩~")
+      var v = document.getElementById("volumn");
+      var d = document.getElementById("demo");
+      d.innerText = "value :" + v.value;
+    }
+
+    function volumn_change() {
+      var v = document.getElementById("volumn");
+      var d = document.getElementById("demo");
+      d.innerText = "value :" + v.value;
+    }
+  </script>
+</body>
+```
+
+<h4>[결과]</h4>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/HTML/img/days06_ex02.JPG)
 
