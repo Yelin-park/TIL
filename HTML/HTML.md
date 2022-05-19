@@ -154,4 +154,91 @@ ex12.html 입력한 last name = <%= lname %><br>
       - 시간을 선택하는 기능
 </ul>
 
+  <h4>[ 코드 ]</h4>
+
+```html
+<body>
+  <form id="form1" action="ex01_ok.jsp" method="get">
+    이름 :
+    <input
+      type="text"
+      id="name"
+      name="name"
+      autofocus="autofocus"
+      value="admin"
+    /><br />
+    나이 : <input type="text" id="age" name="age" /><br />
+    <!-- <input type="submit"> -->
+    <!-- <button type="submit">제출</button> type을 주지않아도 제출 기능을 하는 버튼임 -->
+
+    <!-- 서버에 제출하는(submit) 기능이 없는 일반 버튼 -->
+    <!-- 사용자 반응 처리를 해야함(javascript로...) -->
+    <input type="button" value="제출" onclick="send();" />
+    <!-- value -->
+    <input type="reset" value="리셋" />
+    <!-- value 속성을 안주면 기본값으로 초기화라고 나옴 -->
+  </form>
+
+  <script>
+    function send() {
+      // alert("이벤트 발생");
+      var f1 = document.getElementById("form1");
+
+      // (입력값에 대한 유효성 검사) 이름, 나이 필수 입력 항목 체크 후 submit
+
+      // js함수 == submit()
+      f1.submit();
+    }
+  </script>
+
+  <!-- 1개의 html 파일에 여러 개의 form 태그가 있어도 상관없다. -->
+  <!-- 해당하는 form에 대해서만 서버가 전송된다. -->
+  <form action="ex01_ok_02.jsp">
+    <!-- 항목 중에 1개만 선택 : 라디오버튼, 여러개 선택 : 체크박스 -->
+    <!-- id 속성은 그 요소의 고유한 이름을 나타내는 속성, 중복 X -->
+    <!-- name 속성은 서버로 제출되어질 때 가지고 가는 속성, 경우에 따라서 중복 O -->
+    <!-- 성별 남자/여자 라디오버튼을 하나의 그룹으로 묶어주는 역할 : name 속성 -->
+    <!-- ?gender=f 이런식으로 나올 것임(value를 주어서) -->
+    성별 :
+    <input
+      type="radio"
+      id="gm"
+      name="gender"
+      checked="checked"
+      value="m"
+    /><label for="gm">남자</label>
+    <!-- checked="checked" 디폴트 값은 남자로 설정 -->
+    <input type="radio" id="gw" name="gender" value="w" /><label for="gw"
+      >여자</label
+    >
+    <!-- label 태그를 사용하면 글씨를 클릭해도 라디어버튼이 체크가 되어지게 하는 태그이며 for 속성으로 id명을 주어야한다.  -->
+    <!-- 라디오버튼 앞에는 label 태그가 항상 같이 사용되어진다. -->
+    <br />
+
+    좋아하는 과목을 모두 선택하세요?
+    <br />
+    <!-- 과목이라는 그룹으로 묶기 위해서 똑같은 name 속성 값을 줘야함 -->
+    <input type="checkbox" name="subject" value="kor" checked="checked" />국어
+    <input type="checkbox" name="subject" value="eng" checked="checked" />영어
+    <input type="checkbox" name="subject" value="mat" checked="checked" />수학
+    <input type="checkbox" name="subject" value="PE" checked="checked" />체육
+    <br />
+
+    <!-- 첨부할 파일을 선택할 뿐이지 서버에 파일이 업로드 되지는 않는다.
+  파일 업로드 할 수 있는 라이브러리를 설치해서 구현을 해야한다. -->
+    첨부파일 :
+    <!-- 	<input type="file" name="attachFile"><br>
+<input type="file" name="attachFile"><br>  이렇게 태그를 여러개 선언을 해서 할 수도 있지만.. -->
+    <!-- multiple="multiple"을 주어서 여러 개의 파일을 올릴 수 있다. -->
+    <input type="file" name="attachFile" multiple="multiple" /><br />
+    <br />
+
+    <input type="submit" />
+  </form>
+</body>
+```
+
+<h4>[결과]</h4>
+
+ ![alt](https://github.com/Yelin-park/TIL/blob/main/HTML/img/days06_ex01.JPG)
 
