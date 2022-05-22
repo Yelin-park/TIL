@@ -90,7 +90,7 @@ body {
 ## 6. CSS 색상 지정
 
 1. 표준색상명(140개)으로 나타냄
-2. RGB(0~255, 0~255, 0~255) - red/green/blue 색의 3원소 값을 주어서 나타냄
+2. RGB(0 ~ 255, 0 ~ 255, 0 ~ 255) - red/green/blue 색의 3원소 값을 주어서 나타냄
 3. #16진수값 - HEX == 16진수
 4. RGBA(alpha 투명도 0.0~1.0)
 5. HSL - hue(색조) / saturation(채도) / lightness(밝기, 명도)
