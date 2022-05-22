@@ -576,7 +576,7 @@ body {
 
 <br>
 
-## 14. CSS 운곽선(outline)
+## 14. CSS 윤곽선(outline)
 
 1. 윤곽선 - 어떤 요소의 테두리(border) 외부에 그려지는 선
 
