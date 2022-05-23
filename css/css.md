@@ -1697,3 +1697,25 @@ fontawesome은 회원가입 후 자신의 코드를 넣어야 한다.
 ![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex10_xy.JPG)
 
 <br>
+
+## 21. CSS display 속성
+
+1. 레이아웃을 제어하기 위해 가장 중요한 css 속성
+2. 기본값은 inline과 block
+3. display : none; 설정 값은 영역과 내용물 모두 보이지 않도록 하는 것
+4. visibility : hidden; 영역은 그대로 유지되고 콘텐츠만 보이지 않는 것
+   - 레이아웃(배치)할 때 영향을 미침
+
+```html
+<!-- 블럭모드 -->
+<ul>
+  <li><a href="#">Lorem.</a></li>
+  <li><a href="#">Et.</a></li>
+  <li><a href="#">Cupiditate!</a></li>
+</ul>
+
+<!-- 인라인모드 -->
+<span>Lorem.</span>
+<span>Officiis.</span>
+<span>Dolore?</span>
+```
