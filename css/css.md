@@ -1063,3 +1063,637 @@ fontawesome은 회원가입 후 자신의 코드를 넣어야 한다.
 <b>[적용 결과]</b>
 
 ![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/ex11.JPG)
+
+<br>
+
+## 17. CSS 목록 태그 속성
+
+1. list-style-position : 위치를 지정해주는 속성
+2. list-style-type : 마커 스타일을 지정할 수 있는 속성(기본값은 disc)
+3. list-style-image : 마커 스타일 대신 이미지를 사용할 수 있는 속성
+
+<br>
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  ul,
+  ol {
+    background-color: yellow;
+    border: 1px solid red;
+  }
+
+  li {
+    background-color: orange;
+    border: 1px solid blue;
+  }
+
+  ul.first {
+    /* list-style-type: upper-roman; */
+    list-style-position: inside; /* li 태그 안으로 들어가짐 */
+  }
+
+  ol.second {
+    /* list-style-type: disc; */
+    list-style-position: outside;
+  }
+
+  /* 	ul,ol{
+		list-style-type: none;  마커 제거
+		margin: 0;
+		padding: 0;
+	}
+	*/
+</style>
+
+<body>
+  <ul class="first">
+    <li>Lorem.</li>
+    <li>Blanditiis.</li>
+    <li>Beatae!</li>
+    <li>Nostrum.</li>
+    <li>Qui.</li>
+  </ul>
+
+  <ol class="second">
+    <li>Lorem.</li>
+    <li>Et!</li>
+    <li>Voluptas.</li>
+    <li>Dignissimos.</li>
+    <li>Enim!</li>
+  </ol>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex04.JPG)
+
+<br>
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  ul {
+    list-style-type: none; /* 마커 제거 */
+
+    /* disc 마커 대신 이미지 사용*/
+    list-style-image: url("../images/arr.gif");
+  }
+
+  ul li {
+    border-bottom: 1px solid red;
+  }
+
+  ul li:last-child {
+    border-bottom: none;
+  }
+</style>
+
+<body>
+  <ul>
+    <li>Lorem.</li>
+    <li>Enim.</li>
+    <li>Culpa.</li>
+    <li>Animi.</li>
+    <li>Dolore.</li>
+  </ul>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex04_02.JPG)
+
+<br>
+
+<br>
+
+## 18. CSS의 position(위치) 속성
+
+1. static : (기본값) 정적 - top, bottom, left, right 속성 사용할 수 없음. 그 자리에 바로 찍힘
+   - 블럭모드이냐 인라인모드이냐에 따라 기본값으로 아래로 또는 옆으로 나열
+2. relative : 상대좌표(기준점이 중요함)
+3. absolute : 절대좌표, 가장 가까운 부모(조상) 요소를 기준으로 배치한다.
+4. fixed : 고정좌표
+5. sticky : (사전적의미는 끈적끈적한) 사용자의 스크롤 위치에 따라 배치
+   - sticky 속성은 IE 지원하지 않는다.
+   - Safari는 webkit- 접두사를 붙인다.
+   - left, right, bottom, top 적어도 하나는 지정해야 한다.
+
+<br>
+
+<b>[relative, fixed, absolute 코드 예시]</b>
+
+```html
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  div {
+    border: 1px solid gray;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+  }
+
+  /* div:nth-of-type(1){ */
+  div:first-of-type {
+    background-color: red;
+  }
+
+  div:nth-of-type(2) {
+    background-color: green;
+
+    position: relative; /* 기준은 div(box1)의 왼쪽 모서리 */
+    left: 30px;
+    top: 30px;
+  }
+
+  div:nth-of-type(3) {
+    background-color: blue;
+
+    position: fixed; /* 웹브라우저를 움직여도 무조건 고정하겠다. */
+    /* right: 5px; */
+    /* bottom: 5px; */
+    /* left: 5px;*/
+
+    right: 5px;
+    top: 5px;
+  }
+
+  div:last-of-type {
+    background-color: yellow;
+
+    position: absolute; /* 절대좌표, 기준은 부모 (현재 div 부모는 body) */
+    left: 10px;
+    top: 10px;
+  }
+</style>
+
+<body>
+  <script>
+    // js로 div 5개, p 50개 추가
+    for (var i = 1; i <= 5; i++) {
+      var divElemt = document.createElement("div");
+      divElemt.innerText = "Box" + i;
+      document.body.appendChild(divElemt);
+    }
+
+    for (var i = 1; i <= 50; i++) {
+      var pElemt = document.createElement("p");
+      pElemt.innerText = ".";
+      document.body.appendChild(pElemt);
+    }
+  </script>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex08_02.JPG)
+
+<br>
+
+<b>[sticky 코드 예시]</b>
+
+```html
+<style>
+  div:last-of-type {
+    /* 스크롤 바를 생기게 하기 위한 의도 */
+    padding-bottom: 2000px;
+  }
+
+  div.sticky_test {
+    border: 2px solid #4caf50;
+    background: #cae8ca;
+    padding: 3px;
+    text-align: center;
+
+    /*이 div 태그가 스크롤 할 때 top = 0 (제일 위로 올라가도록 하겠다. ) */
+    position: sticky;
+    position: -webkit-sticky; /* Safari 때문에 코딩 추가 */
+    top: 0;
+  }
+</style>
+
+<body>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex quas ratione
+    reiciendis maxime distinctio veritatis aperiam pariatur voluptatum harum
+    laboriosam a aliquam voluptas sequi quidem ea quam illo ullam aspernatur!
+  </p>
+
+  <div class="sticky_test">hello world</div>
+
+  <div>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
+      similique necessitatibus eaque sint laboriosam accusantium.
+    </p>
+    <p>
+      Quas voluptas suscipit modi nisi in est doloribus deleniti eum nemo
+      dolores voluptates aperiam. Fugit.
+    </p>
+    <p>
+      Nulla sunt ad quasi saepe pariatur tenetur dolor totam cumque amet nemo
+      magnam neque aperiam.
+    </p>
+  </div>
+</body>
+```
+
+<b>[sticky 적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex08_03.JPG)
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex08_03_2.JPG)
+
+<br>
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  body {
+    margin: 0;
+    font-size: 28px;
+    font-family: Arial, sans-serif;
+  }
+
+  header {
+    background-color: #f1f1f1;
+    padding: 30px;
+    text-align: center;
+  }
+</style>
+<style>
+  #navbar {
+    background-color: #333;
+    overflow: auto; /* hidden 줘도 됨 */
+
+    /* navbar를 웹브라우저 스크롤해도 맨위로 올리겠다. */
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+  }
+
+  #navbar a {
+    color: #f2f2f2;
+    display: block;
+    font-size: 17px;
+    text-decoration: none;
+    padding: 14px 16px;
+    text-align: center;
+
+    float: left;
+  }
+
+  #navbar a:hover {
+    color: black;
+    background-color: #ddd;
+  }
+
+  #navbar a.active {
+    background-color: #4caf50;
+    color: white;
+  }
+</style>
+
+<body>
+  <header>
+    <h3>TOP</h3>
+    <p>Lorem ipsum dolor sit amet.</p>
+  </header>
+  <nav id="navbar">
+    <a href="#" class="active">Home</a>
+    <a href="#">News</a>
+    <a href="#">Contact</a>
+  </nav>
+  <section class="content">
+    <h3>Sticky Test</h3>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore beatae
+      autem nulla quibusdam suscipit accusamus omnis! Molestias minus doloremque
+      eos quae veniam distinctio sapiente molestiae culpa dicta ea ut eaque.
+    </p>
+    <p>
+      Atque consectetur soluta nesciunt commodi quia quis perferendis earum
+      aliquam quibusdam minima cupiditate dolores exercitationem quae eum labore
+      vero odio reprehenderit? Itaque id placeat nihil dignissimos ipsum
+      repudiandae iste ea.
+    </p>
+    <p>
+      Nesciunt saepe recusandae maxime expedita ex placeat unde minus earum vel
+      fuga reprehenderit optio totam perferendis odit quis quibusdam fugit amet
+      quaerat rem in. Laborum illo maiores animi aperiam harum.
+    </p>
+    <p>
+      Eaque officia quam vel provident eveniet quibusdam iure incidunt sapiente
+      qui amet molestiae ex itaque aut perferendis fugit ducimus autem
+      accusantium magnam maiores quos rem esse obcaecati enim nisi repudiandae.
+    </p>
+    <p>
+      Quo reprehenderit modi labore alias quas nisi nostrum. Hic neque doloribus
+      sed ratione nobis consectetur quam quidem repellat tenetur a dolorem sunt
+      minima explicabo ullam similique expedita tempora. Veritatis architecto.
+    </p>
+    <p>
+      Amet et iusto iure vitae eaque nobis modi impedit aliquam. Molestias aut
+      inventore qui fuga dolore ab officiis eaque quidem adipisci sapiente
+      delectus consequatur voluptatibus ullam odit illum quisquam hic.
+    </p>
+    <p>
+      Neque vel dignissimos fuga laborum quod eius veniam quidem cum optio odio
+      iste enim vitae omnis? Dolor ea quisquam voluptates tempora qui reiciendis
+      facere magnam mollitia ab animi maxime iusto.
+    </p>
+    <p>
+      Placeat commodi minus dolorem quaerat temporibus tempora numquam rerum
+      deleniti quis necessitatibus nihil nemo blanditiis nulla dolorum velit
+      eligendi ipsa vero. Molestias quis ea cum veniam magni obcaecati nobis
+      natus.
+    </p>
+    <p>
+      Minima illo provident voluptates veniam quia maiores at eum id accusantium
+      iure facere tenetur est dicta praesentium optio. Eum debitis rem voluptas
+      maiores ut quibusdam nesciunt unde incidunt eaque nam!
+    </p>
+    <p>
+      Eaque consectetur fugiat suscipit nam cupiditate aperiam alias error
+      nesciunt nulla rem laudantium nobis ducimus et doloremque doloribus. Id at
+      expedita provident tenetur fuga debitis culpa. Minus pariatur totam alias.
+    </p>
+    <p>
+      Dolore molestiae ratione delectus sint! Facere nam quo vel nemo dolores
+      similique laudantium porro illo rem enim magni sint numquam unde earum
+      consequuntur eaque ex quod alias velit quam? Architecto!
+    </p>
+    <p>
+      Et soluta quia magnam debitis fugit fugiat eveniet sed officia architecto
+      vero saepe cum eligendi rem quidem accusantium voluptatum libero
+      consequuntur quibusdam ipsam culpa reprehenderit. Autem facere obcaecati
+      alias velit.
+    </p>
+    <p>
+      Vitae exercitationem dolore sit sint illo nemo officiis corporis itaque
+      numquam nulla earum aut ab molestiae quaerat quidem ad deserunt ea magni
+      architecto sed repellat magnam laudantium alias officia rem!
+    </p>
+    <p>
+      Veniam vel omnis laudantium voluptates debitis labore repellendus ipsam.
+      Natus exercitationem sit autem sint quam sapiente atque nihil qui rem
+      reprehenderit suscipit est deleniti harum nesciunt hic alias placeat ex?
+    </p>
+    <p>
+      Aliquid id dolores quod assumenda nostrum dolorum possimus atque eius
+      magni consequatur voluptas maiores quos ex aspernatur sapiente eveniet
+      nobis harum aut dolor iste excepturi obcaecati explicabo ad ipsum
+      suscipit.
+    </p>
+  </section>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex08_04.JPG)
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex08_04_2.JPG)
+
+<br>
+
+<b>[absolute 코드 예시] \*\*\* </b>
+
+```html
+<style>
+  div.out {
+    width: 400px;
+    height: 200px;
+    border: 3px solid #73ad21;
+
+    position: relative; /* in의 부모는 out으로 만들어주는 설정, 이 속성이 없으면 좌표 점을 찾아 원하는 곳에 레이아웃하기 어려움 */
+  }
+
+  div.in {
+    width: 200px;
+    height: 100px;
+    border: 3px solid #73ad21;
+
+    position: absolute; /* in의 기준점은 out이 되어서 계산하기 편리해진다. */
+    right: 0;
+    bottom: 0;
+    /* 		left: 197px;
+		top: 97px; */
+  }
+</style>
+
+<body>
+  <h3>*** position: absolute 절대좌표 ***</h3>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid possimus
+    quis sapiente laborum dignissimos minima assumenda. Dolorem possimus
+    suscipit mollitia earum voluptatem nobis illo ipsa quisquam consequatur
+    quidem. Hic quis.
+  </p>
+
+  <div class="out">
+    Lorem ipsum dolor sit amet, consectetur adipisicing.
+    <div class="in">in</div>
+  </div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex08_06.JPG)
+
+<br>
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  div {
+    width: 80%;
+    height: 100px;
+    border: 1px solid gray;
+    text-align: center;
+    margin: 0 auto;
+  }
+</style>
+<style>
+  #prev,
+  #next {
+    border: 1px solid red;
+    width: 50px;
+    height: 50px;
+
+    border-radius: 25px;
+  }
+
+  #prev {
+    position: absolute;
+    left: -25px;
+    top: 25px;
+  }
+
+  #next {
+    position: absolute;
+    right: -25px;
+    top: 25px;
+  }
+</style>
+
+<body>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div style="position: relative;">
+    <div id="prev">&lt;</div>
+    <div id="next">&gt;</div>
+  </div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex08_07.JPG)
+
+<br>
+
+## 19. CSS z-index 속성
+
+1. 배치된 두 요소가 서로 겹쳐질 때 z-index 속성 값이 큰 경우 제일 위에 표시 된다.
+   - 속성 값은 큰 의미는 없고 가장 큰 값이 제일 위로 온다.
+
+<b>[relative와 absolute, z-index 코드 예시]</b>
+
+```html
+<style>
+  .container {
+    position: relative; /* 자식 태그들이 위치 값을 잡을 때 얘를 기준으로 잡으라는 의도 */
+    border: 1px solid black;
+  }
+
+  .red-box {
+    background-color: red;
+    height: 100px;
+    margin: 30px;
+
+    position: relative;
+
+    z-index: 1;
+  }
+
+  .green-box {
+    background-color: green;
+
+    position: absolute;
+    height: 60px;
+    width: 70%;
+
+    left: 50px;
+    top: 50px;
+
+    z-index: 10;
+  }
+
+  .blue-box {
+    background-color: blue;
+
+    position: absolute;
+    width: 35%;
+    height: 100px;
+
+    left: 270px;
+    top: -15px;
+
+    z-index: 5;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <div class="red-box">red-box</div>
+    <div class="green-box">green-box</div>
+    <div class="blue-box">blue-box</div>
+  </div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex08_08.JPG)
+
+<br>
+
+## 20. CSS overflow 속성
+
+1. 영역보다 콘텐츠가 너무 커서 맞지 않는 경우 제어하는 속성
+2. 속성 값들
+   - visible(기본값) : 영역 외부에 넘치는 콘텐츠가 출력(랜더링) 되어진다.
+   - hidden : 잘라버린다(보이지않는다.)
+   - scroll : 스크롤바가 생겨서 안보이는 부분은 움직여서 보일 수 있도록 한다.
+   - auto : 스크롤바가 생긴다.
+3. scroll과 auto의 차이점?
+   - scroll은 넘치지 않아도 스크롤바가 생기고 auto는 넘치면 스크롤바가 생기고 안넘치는 생기지 않는다.
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  #demo {
+    width: 50%;
+    height: 100px;
+    border: 1px solid red;
+    background-color: #4caf50;
+
+    overflow: visible; /* 기본값 */
+
+    overflow: hidden; /* 넘치는 부분은 숨김 */
+
+    overflow: scroll;
+
+    overflow: auto;
+
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+</style>
+
+<body>
+  <div id="demo">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam delectus.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam delectus.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam delectus.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam delectus.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam delectus.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam delectus.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam delectus.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam delectus.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam delectus.
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam delectus.
+  </div>
+</body>
+```
+
+<b>[적용 결과 - style 준 순서대로.. ]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex10_%EA%B8%B0%EB%B3%B8%EA%B0%92.JPG)
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex10_hidden.JPG)
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex10_scroll.JPG)
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex10_auto.JPG)
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days03/ex10_xy.JPG)
+
+<br>
