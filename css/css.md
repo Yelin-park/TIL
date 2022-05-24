@@ -1719,3 +1719,550 @@ fontawesome은 회원가입 후 자신의 코드를 넣어야 한다.
 <span>Officiis.</span>
 <span>Dolore?</span>
 ```
+
+<br>
+
+## 22. CSS float 속성과 clear 속성
+
+1. float 속성
+   - 콘테츠의 위치를 지정하고, 형식을 지정하는데 사용하는 속성
+   - 요소를 어떻게 띄울지 설정하는 속성
+2. float 속성 값 : left, right, none(기본값), inherit
+3. clear 속성과 함께 사용된다.(why? 다음 태그에 영향을 주지 않기 위해서)
+4. clear 속성
+   - float 요소 옆에 있는 요소에 어떤 일이 발생해야 하는지 지정하는 속성
+5. clear 속성 값
+   - none : (기본값) p 요소는 왼쪽 또는 오른쪽으로 float 되어있는 요소의 아래로 력되지 않는다.
+   - left : p 요소가 왼쪽으로 float 되어있는 요소의 아래로 출력
+   - right : p 요소가 오른쪽으로 float 되어있는 요소의 아래로 출력
+   - both : p 요소가 왼쪽+오른쪽으로(위치 상관x) float 되어있는 요소의 아래로 출력
+   - inherit : 상속 개념
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  p {
+    border: 3px solid #4caf50;
+    padding: 5px;
+  }
+
+  p img {
+    width: 170px;
+    /* float: left; */ /* 이미지를 왼쪽으로 띄움 */
+    float: right; /* 이미지를 오른쪽으로 띄움 */
+    /* float: none; */
+
+    margin-left: 15px;
+  }
+
+  /* 아래 두가지 설정은 같은 의미이다. */
+  /* 	.clearfix{
+		overflow: auto;
+	} */
+
+  /*
+		::after    의사클래스
+		:hover     의사요소
+    나중에 더 자세히 배울 예정
+	*/
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+</style>
+
+<body>
+  <!-- 이미지가 p 태그 컨테이너에서 출력이 되고 있다. + 텍스트도 출력.. : 이미지를 오른쪽으로 띄우고싶다. -->
+  <p class="clearfix">
+    <!-- float된 img 태그가 p 컨테이너보다 영역이 커져서 오버플로워 발생함(이미지가 테두리를 넘어감) => 이럴때 overflow 속성 사용 -->
+    <img src="../images/pineapple.jpg" alt="" />
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+    reprehenderit cum distinctio nobis ab voluptas amet nam. Laborum eos fugiat
+    distinctio dolore maxime eveniet reprehenderit amet quisquam. Nemo quam sed!
+  </p>
+</body>
+```
+
+- float된 요소가 컨테이너 영역보다 커져서 오버플로워가 발생할 때 overflow 속성을 사용하여 잡아준다.
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days04/ex02.JPG)
+
+<br>
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  /* div는 블럭모드, 너비 100% 잡히고 높이는 내용물에 따라 자동으로 잡혀진다. */
+  div {
+    padding: 15px;
+    border: 1px solid gray;
+
+    /* float: left; */
+    float: right;
+  }
+
+  p {
+    background-color: yellow;
+    /* clear: left; */
+    /* clear: right; */
+    clear: both;
+  }
+</style>
+
+<body>
+  <div class="div1">box 1</div>
+  <div class="div2">box 2</div>
+  <div class="div3">box 3</div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days04/ex02_02.JPG)
+
+<br>
+
+## 23. CSS 4가지 결합자
+
+```
+1. 공백 : 직계 + 후손 포함
+   [ ex)div p{} : div 태그의 직계 자손p + 후손p ]
+
+2. > : 직계 자손만
+   [ ex)div > p{} : div 태그의 직계 자손p ]
+
+3. + : 태그 바로 뒤에 오는 형제 1명
+   [ ex) div + p{} : div 태그 바로 뒤에 따라오는 형제 p ]
+
+4. ~ : 태그 요소에서 인접하지 않아도 되는 뒤에 따라오는 모든 형제 태그
+   [ ex) div ~ p{} : div 태그 바로 뒤에 따라오는 모든 형제 p ]
+```
+
+<br>
+
+## 24. :의사 클래스(pseudo-class) 와 ::의사 요소(pseudo-element)(내용 추가중..)
+
+1. selector:이름 == 의사 클래스
+
+- 어떤 요소의 특수한 상태(특정 상태)를 정의할 때 사용
+
+```
+- 링크 태그에 마우스를 올릴 때 스타일을 지정하겠다. a:hover{ }
+- 텍스트 박스에
+focus를 줄 때 스타일을 지정하겠다. txt:focus{}
+```
+
+2. selector::이름 == 의사 요소
+   - 요소의 지정된 부분에만 스타일 지정
+
+```
+#test::after{ }
+```
+
+<br>
+
+3. :의사클래스 종류
+
+   1. :active =
+   2. :enabled
+   3. :invalid = 활성화된 요소
+   4. :disabled = 비활성화된 요소
+   5. :lang(language)
+   6. :not(selector) = 부정(선택자를 제외하고..)
+   7. :only-child, :only-of-type
+   8. :optional
+   9. :required = 필수입력사항
+   10. :out-of-range
+   11. :root
+   12. :target
+   13. :valid
+   14. :focus = foucs된 상태
+   15. :hover = 커서가 올라간 상태
+   16. :checked = 체크된 상태
+   17. :empty = 텍스트가 없는 요소
+
+<br>
+
+4. 의사요소 종류
+
+   1. ::before - 해당 요소의 콘텐츠 [앞에] 일부 콘텐츠를 삽입
+   2. ::after - 해당 요소의 콘텐츠 [뒤에] 일부 콘텐츠를 삽입
+   3. ::marker - 리스트 항목의 마커를 선택(지정)
+   4. ::selection - 사용자에 의해서 선택된(드래그) 요소의 일부
+   5. ::first-line - 첫 번째 라인(줄)
+
+<br>
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  h1::before {
+    content: url("../images/searchicon.png");
+  }
+
+  h1::after {
+    content: "- Tutorial";
+    color: red;
+    font-style: italic;
+  }
+</style>
+<style>
+  ::marker {
+    color: red;
+    font-size: 23px;
+  }
+</style>
+<style>
+  /* 사용자에 의해서 선택된(드래그) 요소의 일부 */
+  ::selection {
+    color: red;
+    background-color: yellow;
+  }
+</style>
+
+<body>
+  <h1>Lorem ipsum dolor sit amet.</h1>
+  <h1>Possimus quidem magni nihil dolores?</h1>
+  <h1>Doloribus cum error eaque repellendus.</h1>
+  <h1>In itaque ratione temporibus blanditiis?</h1>
+  <h1>Ea nostrum ad unde esse.</h1>
+
+  <hr />
+
+  <h3>::marker 의사요소 - 리스트 항목의 마커를 선택(지정)</h3>
+  <ul>
+    <li>Lorem.</li>
+    <li>Cupiditate.</li>
+    <li>Consequuntur!</li>
+  </ul>
+
+  <ol>
+    <li>Lorem.</li>
+    <li>Delectus!</li>
+    <li>Eius.</li>
+  </ol>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days04/ex09_02.JPG)
+
+<br>
+
+## 24. :first-child, :last-child, nth-child(n) 정확한 의미
+
+1. child 관련
+
+   - :first-child = 부모 태그(어떤 요소)의 첫번째 자식 태그에 해당하는 태그
+   - :last-child = 부모 태그(어떤 요소)의 마지막 자식 태그에 해당하는 태그
+   - :nth-child(n) = 부모 태그(어떤 요소)의 n번째에 해당하는 자식 태그
+
+<br>
+
+2. of-type 관련
+   - :first-of-type = 순서에 상관없이 첫번째에 해당하는 태그
+   - :last-of-type = 순서에 상관없이 마지막에 해당하는 태그
+   - :nth-of-type(n) = 순서에 상관없이 n번째에 해당하는 태그
+
+<br>
+
+ex)
+
+```
+> 부모 태그의 첫 번째 자식 태그가 p인 태그 안에 있는 모든 i 태그
+	p:first-child i{}
+
+> 모든 p 태그 안에 있는 첫번째에 해당하는 i 태그
+	p i:first-child{}
+```
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+/*
+	모든 p 태그에 스타일 설정
+	p{
+		background-color: yellow;
+		border: 1px solid red;
+	} */
+
+	/* 부모의 첫번째 자식 중 p 태그인 것 / body 태그의 첫 번째 자식은 h3이라 설정이 먹히지 않음 */
+	/* div 태그로 묶으면 div 태그 안에서 p 태그가 첫 번째 자식이 되기 때문에 설정이 먹힌다. */
+	p:first-child{
+		background-color: yellow;
+		border: 1px solid red;
+	}
+
+	/* 순서 상관없이 처음으로 만나는 p 태그를 의미함 */
+	p:first-of-type{
+		background-color: yellow;
+		border: 1px solid red;
+	}
+
+	/* 현재 상황에서 아래 설정은 동일하게 먹히지만 만약 마지막에 다른 태그가 있다면 p:last-child는 설정이 먹히지 않는다.*/
+	p:last-child, p:last-of-type{
+		background-color: yellow;
+		border: 1px solid red;
+	}
+
+	p:nth-child(7){
+		background-color: red;
+	}
+
+</style>
+
+<body>
+  <h3>:first-child, :last-child, nth-child(n) 정확한 의미?</h3>
+  <hr>
+  <h3>:first-child, :last-child 정확한 의미?</h3>
+  <h3>:first-child, :last-child 정확한 의미?</h3>
+  <h3>:first-child, :last-child 정확한 의미?</h3>
+
+  <!-- p*7>{$.}+lorem5 -->
+  <p>1.Lorem ipsum dolor sit amet. [자식 중에 첫번째는 아니지만 body에서 처음으로 만나는 p 태그]</p> <!-- body의 2번째 자식 -->
+  <p>2.Dolor natus eveniet maiores in? [body의 7번째 자식]</p>
+  <p>3.Error iure odio qui veritatis.</p>
+  <p>4.Unde harum enim expedita distinctio!</p>
+  <p>5.Exercitationem nesciunt ut quia repellat.</p>
+  <p>6.Sapiente voluptate atque voluptas perspiciatis.</p>
+  <p>7.Temporibus necessitatibus quisquam alias totam. [p:last-of-type]</p>
+
+</body>
+</html>
+```
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days04/ex08_04.JPG)
+
+<br>
+
+## 25. CSS 카운터
+
+1. 자동 번호 매기기
+2. 변수 선언
+3. 속성
+   - counter-reset = 카운터 생성 또는 재설정하는 속성
+   - counter-increment = 카운터 값 증가하는 속성
+   - coutent = 생성된 콘텐츠(내용)를 삽입하는 속성
+   - counter() / counters() = 어떤 요소에 카운터값(1,2,3..)을 추가할 때 사용하는 속성
+
+<br>
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  body {
+    /* int section = 0   사용할 변수 선언 + 초기화 */
+    counter-reset: section;
+  }
+
+  div::before {
+    /* section++ */
+    counter-increment: section;
+    content: counter(
+      section
+    ); /* section 이라는 카운터 값을 얻어와서 content라는 콘텐츠에 삽입하겠다. */
+
+    background-color: black;
+    color: white;
+    padding: 1px 10px;
+    margin-right: 16px;
+    border-radius: 50%;
+  }
+</style>
+
+<body>
+  <div>Java</div>
+  <div>Oracle</div>
+  <div>JDBC</div>
+  <div>html5</div>
+  <div>css3</div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days04/ex09_03.JPG)
+
+<br>
+
+## 26. CSS 투명도 - opacity 속성
+
+- opacity 속성은 자식(하위) 요소의 투명도가 상속 되어지며, rgba 속성은 상속되지 않는다.
+- opacity 속성은 0 ~ 1 값을 준다.
+- 0은 완전투명, 1은 완전불투명
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  img {
+    width: 170px;
+    height: 100px;
+  }
+
+  img:hover {
+    opacity: 0.5;
+  }
+</style>
+
+<body>
+  <img src="../images/img_forest.jpg" alt="" />
+  <img src="../images/img_mountains.jpg" alt="" />
+  <img src="../images/img_5terre.jpg" alt="" />
+</body>
+```
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days04/ex10.JPG)
+
+<br>
+
+## layout 작업 등..
+
+### 팝업 폼(popup form) 만들기
+
+<b>[코드]</b>
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="../images/SiSt.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>2022. 5. 24. - 오전 11:44:53</title>
+    <style>
+      body {
+        font-family: Arial, Verdana, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box; /* 패딩, 마진, 보더 모두 레이아웃 잡을 때 포함해라! */
+      }
+
+      .open-button {
+        background-color: #555;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        opacity: 0.8;
+
+        position: fixed;
+        bottom: 23px;
+        right: 28px;
+
+        width: 280px;
+      }
+
+      .form-popup {
+        display: none;
+        border: 3px solid #f1f1f1;
+        z-index: 9;
+
+        position: fixed;
+        bottom: 0;
+        right: 15px;
+      }
+
+      .form-container {
+        max-width: 300px;
+        padding: 10px;
+        background-color: white;
+      }
+
+      /* form-container 안에 input 태그 안에 type이 txt인 것에만 설정하겠다. */
+      .form-container input[type="text"],
+      .form-container input[type="password"] {
+        width: 100%;
+        margin: 5px 0 22px 0;
+        border: none;
+        background-color: #f1f1f1;
+        padding: 15px;
+      }
+
+      .form-container input[type="text"]:focus,
+      .form-container input[type="password"]:focus {
+        background-color: #ddd;
+        outline: none;
+      }
+
+      .form-container .btn {
+        background-color: #4caf50;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 10px;
+        opacity: 0.8;
+      }
+
+      .form-container .cancel {
+        background-color: red;
+      }
+
+      .form-container .btn:hover,
+      .open-button:hover {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>팝업(popup) 폼(form)</h3>
+
+    <button class="open-button">Open Form</button>
+
+    <div class="form-popup" id="myForm">
+      <form action="" class="form-container">
+        <h1>Login</h1>
+
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required />
+
+        <label for="psw"><b>Password</b></label>
+        <input
+          type="password"
+          placeholder="Enter Password"
+          name="psw"
+          required
+        />
+
+        <button type="submit" class="btn">Login</button>
+        <button type="button" class="btn cancel">Close</button>
+        <!-- btn cancel 두개의 클래스를 가지고 있음 -->
+      </form>
+    </div>
+
+    <script>
+      document.querySelector("button.open-button").onclick = function () {
+        document.getElementById("myForm").style.display = "block";
+      };
+
+      document.querySelector("button.btn.cancel").onclick = function () {
+        document.getElementById("myForm").style.display = "none";
+      };
+    </script>
+  </body>
+</html>
+```
+
+<b>[적용 결과]</b>
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days04/ex03_1.JPG)
+
+![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/days04/ex03_2.JPG)
+
