@@ -1868,7 +1868,7 @@ focus를 줄 때 스타일을 지정하겠다. txt:focus{}
 
 3. :의사클래스 종류
 
-   1. :active =
+   1. :active = 클릭했을 때의 링크 상태
    2. :enabled
    3. :invalid = 활성화된 요소
    4. :disabled = 비활성화된 요소
@@ -1881,7 +1881,7 @@ focus를 줄 때 스타일을 지정하겠다. txt:focus{}
    11. :root
    12. :target
    13. :valid
-   14. :focus = foucs된 상태
+   14. :focus = foucs된 상태(양식의 입력 칸 등 포커스를 받은 요소, 사용자가 요소 클릭, 탭, 선택했을 때 발동)
    15. :hover = 커서가 올라간 상태
    16. :checked = 체크된 상태
    17. :empty = 텍스트가 없는 요소
