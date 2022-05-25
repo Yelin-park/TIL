@@ -272,6 +272,57 @@ body {
 
 <br>
 
+## 7-2. 여러 배경 이미지 추가(다중 배경 설정)
+
+[속성들]
+
+1. background-size
+2. background-origin
+3. background-clip
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  div#demo {
+    background-image: url("../images/img_flwr.gif"), url("../images/paper.gif");
+    background-repeat: no-repeat, repeat;
+    background-position: right bottom, left top;
+
+    /* 약식 */
+    /* background: url('../images/img_flwr.gif') no-repeat right bottom; */
+
+    background: url("../images/img_flwr.gif") no-repeat right bottom, url("../images/paper.gif")
+        repeat left top;
+  }
+</style>
+
+<body>
+  <!-- #demo>h1>lorem3^p*2>lorem -->
+  <div id="demo">
+    <h1>Lorem ipsum dolor.</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio
+      exercitationem facilis ad odit iste expedita unde enim laborum. Odio
+      distinctio culpa reiciendis autem natus soluta praesentium dolor obcaecati
+      temporibus et!
+    </p>
+    <p>
+      Nesciunt error enim iste officiis modi ad repudiandae porro. Mollitia
+      reprehenderit omnis adipisci distinctio sapiente in aliquid vel fugiat
+      laborum sunt totam laboriosam sed quod cupiditate quibusdam non temporibus
+      dicta!
+    </p>
+  </div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days05/ex12.gif">
+
+<br>
+
 ## 8. CSS 테두리(border)
 
 - 기본 선언 형식 : border: 1px solid gray;
@@ -301,6 +352,54 @@ body {
 <b>[적용 결과]</b>
 
 ![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/8.%ED%85%8C%EB%91%90%EB%A6%AC.JPG)
+
+<br>
+
+## 8-2. CSS 둥근 모서리(border-radius)
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  p {
+    width: 200px;
+    height: 200px;
+    border: 1px solid green;
+    padding: 20px;
+  }
+
+  /* p:first-child{  자식 요소중 첫번째가 p 태그인 것 */
+  p:first-of-type {
+    background-color: green;
+    border-radius: 15px 50px 30px 50px; /* 시계방향 위왼 위오 아오 아왼 */
+  }
+
+  p:nth-of-type(2) {
+    background: url("../images/paper.gif") left top repeat;
+    border-radius: 0 50%; /* 1,3번  2,4번 */
+  }
+
+  /* p:last-child */
+  /* p:nth-of-type(3) */
+  p:last-of-type {
+    border: 2px solid #73da21;
+    border-top-left-radius: 15px; /* 1번 위치 */
+    border-bottom-right-radius: 30px; /* 3번 위치 */
+  }
+</style>
+
+<body>
+  <h3>css 둥근모서리(border-radius 속성)</h3>
+
+  <p>Lorem ipsum dolor.</p>
+  <p>Minus omnis debitis.</p>
+  <p>Sint expedita illo!</p>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days05/ex11.gif">
 
 <br>
 
@@ -2203,6 +2302,163 @@ ex)
 <b>[적용 결과]</b>
 
 <img src="img/days05/ex05.gif">
+
+<br>
+
+## 28. CSS 속성 선택자(selector)
+
+1. [속성명] : 속성명에 해당하는 요소들
+   - ex) [type]{}
+2. [속성명=속성값] : 속성명이 속성값에 해당하는 요소들
+   - ex) [type='text']{}
+3. [속성명^=속성값] : 속성명에 속성값으로 시작하는 요소들
+4. [속성명$=속성값] : 속성명에 속성값으로 끝나는 요소들
+5. [속성명*=속성값] : 속성명에 속성값이 어디에든 존재하는 요소들
+6. [속성명~=속성값] : 속성명에 속성값에 해당하는 단어가 포함된 요소들
+7. [속성명|=속성값] - 설명X
+
+<br>
+
+<pre>
+	/* type속성이 있으면 어떤 스타일 지정 */
+	/* 속성값은 중요하지 않음! 속성만 있으면 된다. */
+          속성선택자{ } 
+	
+	[type]{ 
+	/* [type='text']{ */ /* type 속성을 가지면서 text 라는 속성값을 가진 것 */
+		width: 200px;
+		border: 1px solid red;
+		margin: 10px;
+		padding: 5px;		
+	}
+
+	/* where title = 'flower' 쿼리문과 동일한 것 */
+	/* a[title='flower']{ */
+	
+	/* title에 flower이 어디에든지 있는 것 (쿼리 like %flower% 구문과 동일) */
+	a[title*='flower'] {}
+	
+	/* title에 flower로 시작하는 것 */
+	a[title^='flower']{}
+
+	/* title에 flower로 끝나는 것 */
+	a[title$='flower']{}
+
+	/* title에 flower 라는 단어가 포함된 속성값을 가진 요소 */
+	a[title~='flower']{
+		text-decoration: none;
+		color: red;
+	}
+</pre>
+
+```html
+<a href="#" title="klematis flower">naver</a><br>
+<a href="#" title="flower">daum</a><br>
+<a href="#" title="kbsflower">okky</a><br>
+<a href="#" title="kbs-flower">google</a><br>
+<a href="#" title="flowers">abc</a><br>
+<a href="#" title="flower get">efg</a><br>
+<a href="#" title="get flower get">yahoo</a><br>
+
+<hr>
+
+<input><br />
+<input><br />
+<input type="text" /><br />
+<input type="text" /><br />
+<input type="text" /><br />
+<input type="submit" /><br />
+<input type="reset" /><br />
+</body>
+```
+
+<br>
+
+## 29. CSS 특수성(특이성)
+
+<pre>
+[css 특수성(특이성)?]
+   - 동일한 요소를 가리키는 css 규칙이 두 개 이상 있을 경우 어떤 css 규칙을 요소에
+     적용할 것인지를 나타내는 것
+   - 점수로 순위가 정해진다.
+
+[특이성 수준을 나타내는 점수]
+  1. 인라인 css 적용 : 1000점(인라인 스타일 적용 방식이 항상 가장 우선순위가
+  높다.)
+  ex) h1 style="color:red"
+
+  1. id 속성 : 100점 #mydiv{}
+
+  2. 태그명, 의사요소 : 1점
+
+  3. 클래스명, 의사클래스, 속성선택자 : 10점
+
+  4. * : 0점
+
+[!important 속성 값]
+   - !important 속성 값을 주면 특수성 규칙에 예외 발생. 인라인 스타일 시트 적용도 무시하고
+     가장 먼저 적용이 되어진다.
+  
+<hr>
+ex)
+    p{} 1점
+    p.test 1+10 = 11점
+    p#demo 1+100 = 101점
+    #demo 100점
+    .test 10wja
+    p.test1.test2 1+10+10 = 21점
+    #navbar p#demo 100+1+100 = 201점
+    * 0점
+</pre>
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  a {
+    /* 점수 1점 */
+    color: red;
+  }
+
+  p > a {
+    /* 점수 2점 (태그+태그)*/
+    color: green;
+  }
+
+  div > p > a {
+    /* 1+1+1 = 3점 */
+    color: blue;
+  }
+
+  #mydiv p a {
+    /* 10점 + 1점 + 1점 = 102점 */
+    color: aqua;
+  }
+
+  div#mydiv p a {
+    /* 1점 + 10점 + 1점 + 1점 = 103점 */
+    color: fuchsia;
+  }
+
+  a {
+    /* !important 속성값을 주면 특수성 규칙에 예외 발생. 인라인 스타일 시트 적용도 무시 */
+    color: yellow !important;
+  }
+</style>
+
+<body>
+  <p><a href="#" class="button">button 1</a></p>
+  <div id="mydiv">
+    <p><a href="#" class="button">button 2</a></p>
+    <p><a href="#" class="button" style="color: black">button 3</a></p>
+    <!-- 점수 1000점 -->
+  </div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days05/ex08.gif">
 
 <br>
 
