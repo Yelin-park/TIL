@@ -2201,7 +2201,8 @@ ex)
 ```
 
 <b>[적용 결과]</b>
-<img src="img/days05/ex05.jpg">
+
+<img src="img/days05/ex05.gif">
 
 <br>
 
