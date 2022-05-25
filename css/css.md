@@ -2129,6 +2129,83 @@ ex)
 
 <br>
 
+## 27. 이미지 스프라이트(image sprites)
+
+- 이미지 스트라이트란? 단일 이미지에 넣은 이미지 모음
+- 왜 사용하는가? 이미지가 많은 웹페이지는 로드할 때 시간이 오래 걸린다.(성능 저하) = 서버가 이미지를 가지러 여러 번 요청을 하게 됨
+- 아래와 같은 이미지가 이미지 스트라이프<br>
+  <img src="img/days05/img_navsprites_hover.gif">
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  #navlist {
+    position: relative;
+  }
+
+  #navlist li {
+    position: absolute;
+    top: 0;
+
+    margin: 0;
+    padding: 0;
+
+    list-style-type: none;
+  }
+
+  #navlist li,
+  #navlist a {
+    height: 44px;
+    width: 43px;
+    /* border: 1px solid red; */
+
+    display: block; /* 인라인 모드인 a태그에 적용되어서 사각형이 커짐(겹쳐보였던 선이 박스가 됨)*/
+  }
+
+  li#home {
+    left: 0;
+    background: url("../images/img_navsprites_hover.gif");
+  }
+
+  li#prev {
+    left: 63px;
+    background: url("../images/img_navsprites_hover.gif") -47px 0;
+  }
+
+  li#next {
+    left: 129px;
+    background: url("../images/img_navsprites_hover.gif") -91px 0;
+  }
+
+  li#home:hover {
+    background: url("../images/img_navsprites_hover.gif") 0 -45px;
+  }
+
+  li#prev:hover {
+    background: url("../images/img_navsprites_hover.gif") -47px -45px;
+  }
+
+  li#next:hover {
+    background: url("../images/img_navsprites_hover.gif") -91px -45px;
+  }
+</style>
+
+<body>
+  <ul id="navlist">
+    <li id="home"><a href="#"></a></li>
+    <li id="prev"><a href="#"></a></li>
+    <li id="next"><a href="#"></a></li>
+  </ul>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days05/ex05.jpg">
+
+<br>
+
 ## layout 작업 등..
 
 ### 팝업 폼(popup form) 만들기
