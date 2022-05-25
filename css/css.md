@@ -319,7 +319,7 @@ body {
 
 <b>[적용 결과]</b>
 
-<img src="img/days05/ex12.gif">
+<img src="img/days05/ex12.GIF">
 
 <br>
 
@@ -399,7 +399,7 @@ body {
 
 <b>[적용 결과]</b>
 
-<img src="img/days05/ex11.gif">
+<img src="img/days05/ex11.GIF">
 
 <br>
 
@@ -2458,7 +2458,7 @@ ex)
 
 <b>[적용 결과]</b>
 
-<img src="img/days05/ex08.gif">
+<img src="img/days05/ex08.GIF">
 
 <br>
 
