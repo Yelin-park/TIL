@@ -364,7 +364,7 @@ body {
 
 <b>[적용 결과]</b>
 
-<img src="img/days06/ex01.gif">
+<img src="img/days06/ex01.GIF">
 
 <br>
 
