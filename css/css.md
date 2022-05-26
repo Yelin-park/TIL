@@ -323,6 +323,218 @@ body {
 
 <br>
 
+## 7-3. background-size의 속성 값
+
+- contain : 가능한 크게 배경 이미지를 확대
+- cover : 콘텐츠 영역이 완전히 배경 이미지에 포함되도록 처리
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  div {
+    width: 150px;
+    height: 120px;
+    border: 1px solid black;
+
+    background: url("../images/img_flwr.gif"); /* 배경 이미지의 영역이 div 태그의 크기보다 더 커서 잘려서 나오는 상태 */
+  }
+</style>
+
+<body>
+  <img src="../images/img_flwr.gif" alt="" />
+  <!-- 원래 이미지 크기 150px 120px 보다 더 큼 -->
+
+  <h3>background-size : contain, cover X</h3>
+  <div id="div1">
+    <p>Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  <h3>background-size : contain</h3>
+  <div id="div2" style="background-size: contain;">
+    <p>Nostrum at quam inventore numquam.</p>
+  </div>
+
+  <h3>background-size : cover</h3>
+  <div id="div3" style="background-size: cover;">
+    <p>Ex velit id repudiandae rerum.</p>
+  </div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days06/ex01.gif">
+
+<br>
+
+<b>[여러 배경 이미지 설정 + 크기 설정 코드 예시]</b>
+
+```html
+<style>
+  #demo1 {
+    background: url(../images/img_tree.gif) left top no-repeat, url(../images/img_flwr.gif)
+        right bottom no-repeat, url(../images/paper.gif) left top repeat;
+
+    background-size: 50px 120px, 130px, auto;
+  }
+</style>
+
+<body>
+  <h3>여러 배경 이미지 설정 + 크기 설정</h3>
+  <div id="demo1">
+    <p>Lorem ipsum dolor sit amet.</p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem illo
+      consequatur doloribus incidunt temporibus eligendi.
+    </p>
+    <p>
+      Ex quam saepe corporis aspernatur eveniet possimus ab totam assumenda fuga
+      laboriosam voluptate nihil sunt!
+    </p>
+  </div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days06/ex01_03.GIF">
+
+<br>
+
+## 7-4. background-position과 [background-origin]의 차이점?
+
+- 두 속성 모두 배경 이미지의 위치를 지정하는 속성이다.
+- background-position은 left, top, center, middle 속성 값을 x, y 좌표 값을 지정해서 위치를 지정
+- background-origin은 padding-box, border-box, content-box 속성 값을 사용하여 위치를 지정
+  - padding-box : 패딩과 관련, 패딩의 왼쪽 상단에 맞춰서 그려짐(기본값)
+  - border-box : 테두리와 관련, 테두리의 왼쪽 상단에 맞춰서 그려짐
+  - content-box : 콘텐츠와 관련, 콘텐츠의 왼쪽 상단에 맞춰서 그려짐
+
+<br>
+
+## 7-5. background-clip 속성
+
+- 배경색이 그려질 위치를 지정하는 속성
+- 속성값들
+  - padding-box : 패딩과 관련, 패딩의 왼쪽 상단에 맞춰서 그려짐
+  - border-box : 테두리와 관련, 테두리의 왼쪽 상단에 맞춰서 그려짐(기본값)
+  - content-box : 콘텐츠와 관련, 콘텐츠의 왼쪽 상단에 맞춰서 그려짐
+
+<br>
+
+<b>[background-origin, background-clip 코드 예시]</b>
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" type="image/x-icon" href="../images/SiSt.ico">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<title>2022. 5. 26. - 오전 10:56:34</title>
+<style>
+	div{
+		border: 10px dotted black;
+		padding: 50px;
+		background: yellow url(../images/img_flwr.gif) no-repeat;
+	}
+
+	#demo1{
+		background-origin: padding-box;
+		background-clip: padding-box;
+	}
+
+	#demo2{
+		background-origin: border-box;
+		background-clip: border-box;
+	}
+
+	#demo3{
+		background-origin: content-box;
+		background-clip: content-box;
+	}
+</style>
+
+<body>
+<div id="demo1">
+	<h1>Lorem ipsum dolor sit amet.</h1>
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis amet nemo doloribus ut neque quo.</p>
+</div>
+<p></p><!-- 여백 주기용 -->
+<div id="demo2">
+	<h1>Consectetur molestiae unde iste laudantium.</h1>
+	<p>Provident ea fugit quasi debitis culpa quibusdam quidem reiciendis architecto repellat sint nesciunt ipsum a.</p>
+</div>
+<p></p><!-- 여백 주기용 -->
+<div id="demo3">
+	<h1>Adipisci hic optio magni nobis!</h1>
+	<p>Qui quam accusantium dolores asperiores veritatis nisi aspernatur porro illo repudiandae laudantium ipsam quo architecto.</p>
+</div>
+</body>
+</html>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days06/ex01_04.GIF">
+
+<br>
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  html {
+    border: 1px solid red;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    border: 1px solid blue;
+    height: 100%;
+
+    margin: 0;
+  }
+
+  .parallax {
+    border: 1px solid green;
+    height: 100%;
+    background: url("../images/img_parallax.jpg") no-repeat center fixed rgba(0, 0, 0, 0.5);
+    background-size: cover;
+  }
+</style>
+
+<body>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa in cupiditate
+    magnam nihil reprehenderit nostrum quo reiciendis earum ipsam fuga eos
+    temporibus voluptatem placeat natus eligendi impedit iure! Repellat quidem.
+  </p>
+  <!-- parallax 시차(보는 시각의 차이, 보는 시각에 따라서 물체의 위치나 방향의 차이) -->
+  <div class="parallax"></div>
+  <div style="height: 500px; background: fuchsia; font-size: 20px;">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci quod
+    ducimus possimus suscipit obcaecati exercitationem minima sint veniam
+    eveniet maiores neque quia beatae porro odio ut vitae aliquid asperiores
+    recusandae.
+  </div>
+  <div class="parallax"></div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+- 여기서 보여지는 배경이미지는 하나처럼 보이지만 두개의 이미지임
+
+<img src="img/days06/ex01_05.GIF">
+
+<br>
+
 ## 8. CSS 테두리(border)
 
 - 기본 선언 형식 : border: 1px solid gray;
@@ -966,6 +1178,95 @@ body {
 
 <br>
 
+## 15-5. css 텍스트 효과(text-overflow와 writing-mode)
+
+- text-overflow 속성 : 표시되지 않는 overflow 콘텐츠가 사용자에게 어떻게 신호되어질지를 지정
+- writing-mod는 쓰기 모드(가로 쓰기 모드, 세로 쓰기 모드)
+
+<b>[text-overflow 코드 예시]</b>
+
+```html
+<style>
+  p {
+    width: 200px; /* 너비를 지정해줘서 자동으로 개행작업 이루어짐 */
+    border: 1px solid black;
+  }
+
+  p.test1 {
+    white-space: nowrap; /* br태그로 개행하지 않으면 자동으로 개행하지 말아라 => 오버플로워 발생 */
+    overflow: hidden;
+    text-overflow: clip; /* 기본값 */
+  }
+
+  p.test2 {
+    white-space: nowrap; /* br태그로 개행하지 않으면 자동으로 개행하지 말아라 => 오버플로워 발생 */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 사전적의미 : 생략하겠다. 생략 부호 / 줄임표(...)가 랜더링 되어짐 */
+  }
+
+  p.test2:hover {
+    overflow: visible;
+  }
+
+  p.test3 {
+    /* 하나의 단어가 너비보다 길어서 오버플로워 발생 */
+    word-wrap: break-word;
+
+    /* 줄 바꿈하는 규칙 지정 */
+    word-break: break-all;
+  }
+</style>
+
+<body>
+  <p class="test1">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt modi.
+  </p>
+  <p class="test2">
+    Sit impedit similique ipsam tempora laboriosam veritatis eius quia beatae!
+  </p>
+  <p class="test3">
+    Sit impedit similiqueipsamtemporalaboriosamveritatis eius quia beatae!
+  </p>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days06/ex04.GIF">
+
+<br>
+
+<b>[writing-mode 코드 예시]</b>
+
+```html
+<style>
+  p.test1 {
+    writing-mode: horizontal-tb; /* 가로 쓰기 모드 */
+  }
+
+  p.test2 > span {
+    writing-mode: vertical-rl; /* 세로 쓰기 모드 */
+  }
+
+  p.test3 {
+    writing-mode: vertical-rl;
+  }
+</style>
+
+<body>
+  <!-- p.test$*3>lorem5 -->
+  <p class="test1">Lorem ipsum dolor sit amet.</p>
+  <p class="test2">Est voluptate <span>itaque</span> debitis ducimus?</p>
+  <p class="test3">Ab ipsam rem soluta quo?</p>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days06/ex04_02.GIF">
+
+<br>
+
 ## 15-3. CSS 텍스트 그림자
 
 1. text-shadow: offset-x offset-y blur-radius color | none | initial | inherit
@@ -1011,6 +1312,47 @@ body {
 <b>[적용 결과]</b>
 
 ![alt](https://github.com/Yelin-park/TIL/blob/main/css/img/ex09_04.JPG)
+
+<br>
+
+## 15-4. 박스 그림자 효과(box-shadow)
+
+<b>[코드예시_다중 그림자 설정 포함]</b>
+
+```html
+<style>
+  h1 {
+    color: yellow;
+    /* 수평 그림자, 수직 그림자, blur(흐림), 그림자색상 지정 */
+    /* text-shadow: 2px 2px 5px red; */
+
+    /* 다중 그림자 효과 설정 */
+    /* text-shadow: 0 0 3px red, 0 0 10px blue; */
+
+    color: white;
+    /* text-shadow: -1px 0 black, 0 -1px black;  */ /* 왼쪽, 위쪽 */
+    text-shadow: -1px 0 black, 0 -1px black, 1px 0 black, 0 1px black; /*  */
+  }
+
+  p {
+    width: 300px;
+    height: 100px;
+    background-color: yellow;
+
+    /* 수평 그림자, 수직 그림자, blur(흐림), spread(번짐), 그림자 색상 */
+    box-shadow: 10px 10px 5px 3px gray;
+  }
+</style>
+
+<body>
+  <h1>텍스트 그림자 효과(text-shadow)</h1>
+  <p>박스 그림자 효과(box-shadow)</p>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days06/ex03.GIF">
 
 <br>
 
@@ -1095,6 +1437,51 @@ body {
 <b>[적용 결과]</b>
 
 ![[alt](https://) 15-2번](https://github.com/Yelin-park/TIL/blob/main/css/img/15-2%EB%B2%88.JPG)
+
+<br>
+
+## 16-3. CSS 웹 글꼴
+
+<pre>
+  - 클라이언트에 설치 되지 않은 글꼴을 사용할 수 있는 것.
+   -> 웹에서 제공하는 글꼴 사용을 하면 설치가 되어 있지 않더라도 그 글꼴을 웹 서버에서 자동으로 다운로드해서 클라이언트에서도 글꼴 사용 가능
+  
+  - 글꼴 파일명
+    ttf - 트루타입글꼴 : 1980년대 후반 Apple/MS 에서 개발한 표준 글꼴
+    otf - 오픈타입글꼴
+    woff - 웹 오픈 글꼴 형식
+</pre>
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  @font-face {
+    font-family: myFirstWebFont; /* 내가 준 글꼴 이름 */
+    src: url("../images/sansation_bold.woff"); /* 이 글꼴을 받아서 사용하겠다. */
+    font-weight: bold;
+  }
+
+  * {
+    font-family: myFirstWebFont;
+  }
+</style>
+
+<body>
+  <h1>@font-face Rule</h1>
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi aspernatur.
+  </div>
+  <p>
+    <b>Note : </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Iusto modi minus praesentium maiores dolorum quia.
+  </p>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days06/ex05.GIF">
 
 <br>
 
@@ -1951,9 +2338,8 @@ fontawesome은 회원가입 후 자신의 코드를 넣어야 한다.
 - 어떤 요소의 특수한 상태(특정 상태)를 정의할 때 사용
 
 ```
-- 링크 태그에 마우스를 올릴 때 스타일을 지정하겠다. a:hover{ }
-- 텍스트 박스에
-focus를 줄 때 스타일을 지정하겠다. txt:focus{}
+- 링크 태그에 마우스를 올릴 때 스타일을 지정하겠다. => a:hover{ }
+- 텍스트 박스에 focus를 줄 때 스타일을 지정하겠다. => txt:focus{}
 ```
 
 2. selector::이름 == 의사 요소
@@ -2459,6 +2845,518 @@ ex)
 <b>[적용 결과]</b>
 
 <img src="img/days05/ex08.GIF">
+
+<br>
+
+## 30. CSS gradient 효과
+
+그라데이션 효과
+
+1. 선형 그라데이션( linear-gradient(그라데이션 방향, 최소한 두 개의 색상 지정) )
+   - 지정된 색상 간에 부드러운 전환(빨강->노랑)
+   - 방향: top->bottom(to bottom), to right, to left, to top 또는 각도
+2. 방사형 그라데이션( radial-gradient(모양크기, 색상, 색상) )
+   - 중심으로부터 부드러운 전환
+3. 원추형 그라데이션
+
+<br>
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  div {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+  }
+
+  #grad1 {
+    /* 1. 선형 그라데이션 */
+    /* color 와 stop 두개의 지점이 필요 */
+    /* background-image: linear-gradient(그라데이션 방향, 최소한 두 개의 색상 지정) */
+    /* background-image: linear-gradient( to right ,red, yellow); */ /* to bottom */
+    background-image: linear-gradient(
+      45deg,
+      rgba(255, 0, 0, 0.5),
+      yellow,
+      blue
+    );
+  }
+
+  #grad2 {
+    /* 2. 방사형 그라데이션 */
+    /* background-image: radial-gradient(모양크기, 색상, 색상) */
+    /* background-image: radial-gradient(red, green, blue); */
+    /* 중심으로부터 부드러운 전환 */ /* % 간격 */
+    background-image: radial-gradient(circle, red 5%, green 15%, blue 60%);
+  }
+</style>
+
+<body>
+  <div id="grad1"></div>
+  <div id="grad2"></div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days06/ex02.GIF">
+
+<br>
+
+## 31. CSS로 2D, 3D 변환 작업(transform 속성)
+
+<pre>
+[2D 변환 작업 관련 속성 값]
+   1. 요소를 이동하는 작업 - translate(x좌표, y좌표) 속성 값
+   2. 요소를 회전시키는 작업 - rotate(n deg) 속성 값
+   	> 시계 방향(+), 반시계 방향(-) 회전 가능
+   3. 요소 크기를 조정하는 작업(너비, 높이) - scale(), scaleX(), scaleY() 속성 값 
+   												너비      높이
+   4. 요소의 기울기를 주는 작업 - skew(), skewX(), skewY() 속성 값
+      요소를 지정된 각도만큼 x축, y축으로 기울인다.									
+   5. 이동/회전/크기/기울기를 동시에 주는 작업 - matrix() 속성 값
+
+[3D 변환 작업 관련 속성 값]
+1. 요소 이동
+   - translateX(), translateY(), translateZ(), tanslate3d(x,y,z,a) 속성 값
+   1. 요소 회전
+   - rotateX(), rotateY(), rotateZ(), rotate3d(x,y,z,a) 속성 값
+   1. 요소 크기
+   - scaleX(), scaleY(), scaleZ(), scale3d(x,y,z,a) 속성 값
+   1. matrix3d()
+</pre>
+
+<b>[2D 변환 작업 코드 예시]</b>
+
+```html
+<style>
+  div {
+    width: 300px;
+    height: 50px;
+    background-color: yellow;
+    border: 1px solid black;
+  }
+
+  .test1 {
+    background-color: green;
+    /* 1. 요소 이동 */
+    transform: translate(50px, 100px);
+    -ms-transform: translate(
+      50px,
+      100px
+    ); /* IE 9 이전 버전에 사용, 위와 같은 코딩 */
+  }
+
+  .test2 {
+    background-color: blue;
+    /* 2. 요소 회전 */
+    transform: rotate(-50deg);
+    -ms-transform: rotate(-50deg);
+  }
+</style>
+
+<body>
+  <h3>css로 2D 변환 작업(transform 속성)</h3>
+  <br />
+  <div>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eius!
+  </div>
+  <div class="test1">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eius!
+  </div>
+  <div class="test2">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eius!
+  </div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days06/ex06.GIF">
+
+<br>
+
+<b>[2D 변환 작업 코드 예시]</b>
+
+```html
+<style>
+	div{
+		width: 300px;
+		height: 50px;
+		background-color: yellow;
+		border: 1px solid black;
+	}
+
+	.test1{
+		background-color: green;
+		/* 3. 요소 크기 조정 */
+		/* 2배를 크게 하겠다. */
+		/* transform: scaleX(1.5); */ /* 너비 */
+		/* transform: scaleY(1.5); */ /* 높이 */
+		transform: scale(2, 0.5); /* 너비는 2배, 높이는 1/2배 */
+	}
+
+	.test2{
+		background-color: blue;
+		/* 4. 요소의 기울기 */
+		/* transform: skewX(40deg); */
+		/* transform: skewY(40deg); */
+		transform: skew(20deg, 10deg);
+		/* transform: skew(20deg); == transform: skew(20deg, 0); 같은 코딩 */
+	}
+
+	.test3{
+		background-color: red;
+		/* matrix(scaleX(), skewY(), skewX(), scaleY(), tanslateX(), translateY()) */
+		/* 			x크기	y기울기	x기울기		y크기	x이동			y이동	*/
+		transform: matrix(1, -0.3, 0, 1, 0, 0);
+	}
+</style>
+
+<body>
+<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eius!</div>
+<br />
+<div class="test1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eius!</div>
+<br />
+<div class="test2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eius!</div>
+<br />
+<div class="test3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque eius!</div>
+</body>
+</html>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days06/ex06_02.GIF">
+
+<br>
+
+<b>[3D 변환 작업 코드 예시]</b>
+
+```html
+<style>
+  div {
+    width: 300px;
+    height: 100px;
+    background-color: yellow;
+    border: 1px solid black;
+  }
+
+  /* css 3D 변환 */
+  #demo1 {
+    background-color: skyblue;
+    transform: rotateX(50deg);
+  }
+
+  #demo2 {
+    background-color: green;
+    transform: rotateY(50deg);
+  }
+
+  #demo3 {
+    background-color: red;
+    transform: rotateZ(50deg);
+  }
+</style>
+
+<body>
+  <h3>css 3D 변환 - transform 속성 사용</h3>
+  <div>Lorem ipsum dolor sit amet.</div>
+  <div id="demo1">Lorem ipsum dolor sit amet.</div>
+  <div id="demo2">Lorem ipsum dolor sit amet.</div>
+  <br /><br /><br /><br /><br /><br /><br />
+  <div id="demo3">Lorem ipsum dolor sit amet.</div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days06/ex07.GIF">
+
+<br>
+
+## 32. CSS 전환 작업(transition 속성)
+
+<pre>
+1. 전환? 주어진 기간 동안 속성값을 부드럽게 변경
+2. 전환 속성들
+  transition 속성(약식)
+  transition-delay 속성 - 전환 작업 시작 시간 설정
+  transition-duration 속성 - 전환 시간 설정
+  transition-property 속성 - 전환 속성 설정
+  transition-timing-function 속성 - 속도 곡선 설정(전환 속도)
+    > ease 기본값(천천히 시작 빨라졌다가 천천히 종료)
+    > linear(곡선) 처음부터 끝까지 일정한 속도(등속)
+    > ease-in 천천히 시작
+    > ease-out 천천히 종료
+    > ease-in-out 천천히 시작해서 천천히 종료
+
+3. 전환 효과를 만들려면 2가지 지정
+   1) 효과를 추가하려는 CSS 속성
+   2) 효과를 지속 시간
+   (지속 시간을 지정하지 않으면 기본값은 0으로 적용된다.)
+</pre>
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  div {
+    width: 100px;
+    height: 100px;
+    background: red;
+
+    /* 약식 */
+    /* transition: width 2s, height 1s; */ /* 부드럽게 전환, ease 생략 */
+    transition-property: width; /* 전환 속성 */
+    transition-duration: 2s; /* 전환 시간 */
+    transition-timing-function: ease; /* 전환 속도 곡선 */
+  }
+
+  /* 너비를 전환될 때 부드럽게 변경 - 전환*/
+  div:hover {
+    width: 300px;
+    height: 200px;
+  }
+</style>
+<body>
+  <div></div>
+</body>
+```
+
+<br>
+
+<b>[코드 예시 - 속도 곡선 관련]</b>
+
+```html
+<style>
+  div {
+    width: 100px;
+    background-color: red;
+    margin-bottom: 3px;
+
+    transition: width 2s; /* width가 100px에서 100% 넓어질 때 2초 걸려라 */
+
+    /* 전환하는 작업을 1초 후에 시작 */
+    transition-delay: 1s;
+  }
+
+  div:hover {
+    width: 100%;
+  }
+
+  /* 속도 곡선 지정 - transition-timing-function */
+  div:nth-of-type(1) {
+    transition-timing-function: ease;
+  }
+  div:nth-of-type(2) {
+    transition-timing-function: linear;
+  }
+  div:nth-of-type(3) {
+    transition-timing-function: ease-in;
+  }
+  div:nth-of-type(4) {
+    transition-timing-function: ease-out;
+  }
+  div:nth-of-type(5) {
+    transition-timing-function: ease-in-out;
+  }
+</style>
+
+<body>
+  <div>ease(default)</div>
+  <div>linear</div>
+  <div>ease-in</div>
+  <div>ease-out</div>
+  <div>ease-in-out</div>
+</body>
+```
+
+<br>
+
+<b>[전환 + 변환 코드 예시]</b>
+
+```html
+<style>
+  div {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    text-align: center;
+
+    /* 부드럽게 전환 + 부드럽게 회전 변환 */
+    transition: width 2s ease, height 2s ease, transform 2s ease;
+  }
+
+  div:hover {
+    width: 300px;
+    height: 300px;
+
+    transform: rotate(180deg);
+  }
+</style>
+
+<body>
+  <h3>전환(transition) + 변환(transform)</h3>
+  <div>box</div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+<img src="img/days06/ex08_03.GIF">
+
+<br>
+
+## 33. CSS 애니메이션 효과
+
+<pre>
+- 하나의 스타일에서 다른 스타일로 점차적으로 변환되는 것
+- css 속성
+	@keyframes
+	- animation-name : keyframes의 이름을 넣어줌
+  
+  - animation-duration : 애니메이션 효과를 얼마나 유지할 것인가
+  
+	- animation-delay : 애니메이션 효과를 언제 시작할 것인가
+  
+	- animation-iteration-count : 애니메이션 효과를 반복할 횟수(infinite는 무한대 반복)
+  
+	- animation-direction : 애니메이션 효과가 나오는 방식
+    > 속성 값 : reverse, normal, alternate, alternate-reverse
+
+	- animation-timing-function
+  
+  - animation-fill-mode : 애니메이션 시작 전, 종료 후 그 요소의 스타일을 지정하는 속성(fill-mode를 주지 않으면 원위치로 돌아감)
+        > 속성값 : forwards, backwards, both, none
+		    > forwards는 마지막 키프레임의 스타일 유지하겠다.
+		    > backwards는 애니메이션 시작 전의 첫번째 키프렘의 스타일 유지
+
+	- animation : 약식
+
+- 첫 단계 : @keyframes 지정
+	keyframe(키프레임) 이란? 특정 시간에 요소가 가지는 스타일
+</pre>
+
+<br>
+
+<b>[코드 예시]</b>
+
+```html
+<style>
+  div {
+    width: 100px;
+    height: 100px;
+    background: red;
+  }
+
+  .test1 {
+    animation-name: example1;
+    animation-duration: 4s;
+    animation-timing-function: linear; /* 등속 */
+    animation-delay: 1s; /* 애니메이션 효과를 언제 있다가 시작할 것인가 */
+    animation-iteration-count: infinite; /* 횟수로 숫자를 줘도 되고, 무한반복해도 됨*/
+    animation-direction: alternate; /* alternate : 번갈아 나오는*/
+  }
+
+  .test2 {
+    animation-name: example2;
+    animation-duration: 4s;
+    animation-timing-function: linear; /* 등속 */
+    animation-delay: 1s; /* 애니메이션 효과를 언제 있다가 시작할 것인가 */
+    animation-fill-mode: both;
+    position: relative; /* 포지션 속성을 주면 위치도 설정 가능 */
+  }
+
+  .test3 {
+    width: 100px;
+    height: 100px;
+    background: red;
+
+    animation-name: example3;
+    animation-duration: 4s;
+    animation-timing-function: linear; /* 등속 */
+    animation-delay: 1s; /* 애니메이션 효과를 언제 있다가 시작할 것인가 */
+    animation-fill-mode: both; /* 애니메이션이 재생되지 않을 때(시작전, 종료후) 그 요소의 스타일을 지정하는 속성 */
+    position: relative; /* 포지션 속성을 주면 위치도 설정 가능 */
+  }
+
+  /* @keyframes 프레임이름(내가지어주는것){ */
+  @keyframes example1 {
+    from {
+      background-color: red;
+    }
+    to {
+      background-color: yellow;
+    }
+  }
+
+  @keyframes example2 {
+    0% {
+      background-color: red;
+      left: 0;
+      top: 0;
+    }
+    25% {
+      background-color: green;
+      left: 200px;
+      top: 0;
+    }
+    50% {
+      background-color: blue;
+      left: 200px;
+      top: 200px;
+    }
+    75% {
+      background-color: red;
+      left: 0;
+      top: 200px;
+    }
+    100% {
+      background-color: yellow;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  @keyframes example3 {
+    0% {
+      background-color: red;
+      left: 0;
+      top: 0;
+    }
+    25% {
+      background-color: green;
+      left: 200px;
+      top: 0;
+    }
+    100% {
+      background-color: blue;
+      left: 200px;
+      top: 200px;
+    }
+  }
+</style>
+
+<body>
+  <h3>css 애니메이션 효과 - js, flash</h3>
+
+  <div class="test1"></div>
+  <div class="test2"></div>
+  <div class="test3"></div>
+  <div class="test4"></div>
+</body>
+```
+
+<b>[적용 결과]</b>
+
+애니메이션 효과 진행 중<br>
+<img src="img/days06/ex09_1.GIF"><br>
+<br>
+애니메이션 효과 종료<br>
+<img src="img/days06/ex09_2.GIF">
 
 <br>
 
