@@ -3360,6 +3360,67 @@ ex)
 
 <br>
 
+## 34. 뷰포트와 미디어쿼리
+
+<b>[뷰포트(viewport)]</b>
+
+<pre>
+1. 웹 페이지에서 사용자가 볼 수 있는 영역
+
+2. 표시 영역은 디바이스(장치)에 따라 화면의 크기가 다르다.
+
+3. 테블릿, 스마트폰, 컴퓨터 화면에 따라서 뷰포트의 차이가 발생
+  	ㄴ> 여러 장치에서 브라우저를 사용해서 웹 페이지를 볼 때 그 웹 페이지를 장치 화면에 맞게 축소, 확대..
+  	
+4. '장치에 크기 배율에 맞게 웹페이지의 크기를 제어하겠다.' 라고 해서 뷰포트를 설정한다.
+  	ㄴ meta name="viewport" content="width=device-width, initial-scale=1.0"
+  		- width=device-width : 장치의 화면 너비를 따라서 웹 페이지 너비를 설정하겠다.
+  		- initial-scale=1.0 : 브라우저에서 페이지를 처음 로드할 때의 초기 확대/축소하는 수준을 1:0으로 맞추겠다.(장치에 맞추겠다)
+</pre>
+
+<br>
+
+<b>[미디어 쿼리]</b>
+
+<pre>
+- css2부터 도입 @media 규칙 - 다양한 미디어 유형에 따라 서로 다른 스타일 적용을 하겠다(정의)
+	 다양한 미디어 유형 - 컴퓨터 화면용, 휴대폰, TV, 테블릿, 프린터 용
+	
+- css3 도입 = css2 미디어 유형 + 확장(인쇄)
+	미디어 쿼리는..
+  	- 뷰포트의 너비/높이 확인
+  	- 장치의 너비/높이 확인
+  	- 방향(가로/세로 모드) 확인
+  	- 등등
+	
+- 미디어 쿼리를 사용해서 반응형 웹을 만드는 도구로 사용된다.
+	
+미디어 쿼리 형식1) - 다양한 미디어 유형에 따라 적용할 스타일을 구현하겠다.
+  @media only|not mediatype and (expressions[표현식(참, 거짓)]){
+    css-code;
+  }
+	
+	> only, not 생략한다면 all 이라고 생각하자(모두 적용)
+	> mediatype : screen, print, speech
+	
+미디어 쿼리 형식2) link 태그 사용
+	link rel="stylesheet" href="print.css" media="mediatype and|not|only (expression)"
+</pre>
+
+<b>[예시]</b>
+
+<pre>
+body{background-color: red;}
+
+@media screen and (min-width:480px){
+	body{background-color: blue;}
+}
+
+> 480 미만일 경우 배경색은 red, 480 이상일 경우 배경색은 blue
+</pre>
+
+<br>
+
 ## layout 작업 등..
 
 ### 팝업 폼(popup form) 만들기
